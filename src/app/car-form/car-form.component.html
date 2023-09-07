@@ -1,0 +1,36 @@
+<h1>Car forms</h1>
+<mat-form-field>
+    <mat-label>Model</mat-label>
+    <input matInput>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Description</mat-label>
+    <input matInput>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Brend Id</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let car of Allcars" [value]="car.id">{{car.name}}</mat-option>
+      
+    </mat-select>
+  </mat-form-field>
+
+  <h3>Security Features</h3>
+
+  <mat-radio-group aria-label="Select an option">
+    <mat-radio-button *ngFor="let carSecurityFeature of AllCarsSecurityFeatures " [value]="carSecurityFeature.id">{{carSecurityFeature.name}}</mat-radio-button>
+
+  </mat-radio-group>
+  
+
+  <hr>
+  
+  <hr>
+  
+  <hr>
+  <h3>Comfort Features</h3>
+
+  <section class="example-section">
+    <mat-checkbox   *ngFor="let comfortFeature of comfortFeatures" class="example-margin"> {{comfortFeature.name}}</mat-checkbox>
+   
+  </section>
