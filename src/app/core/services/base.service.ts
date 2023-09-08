@@ -10,9 +10,7 @@ export class BaseService {
 
   apiUrl = environment.apiUrl
 
-  constructor(
-    private http : HttpClient,
-  ) { }
+  constructor( private http : HttpClient ) { }
 
 
   get<T>(url:string): Observable<T>{

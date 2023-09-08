@@ -1,23 +1,22 @@
 import { Injectable } from '@angular/core';
 import { BaseService } from './base.service';
 import { Observable} from 'rxjs'
+import { ICars } from '../interfaces/cars';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CarsService extends BaseService {
 
-getAllCars() : Observable<any>{
+getCars() : Observable<ICars[]>{
   return this.get<any>(`car-brands/`)
-
-  
 }
 
-getCarSecurityFeatures(): Observable<any>{
+getCarsSecFeat(): Observable<ICars[]>{
   return this.get<any>('car-security-features/')
 }
 
-getComfortFeatures(): Observable<any>{
+getCarsComfFeat(): Observable<ICars[]>{
   return this.get<any>('car-comfort-features/')
 }
 

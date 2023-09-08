@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CarsService } from '../shared/services/cars.service';
+import { CarsService } from '../core/services/cars.service';
 
 @Component({
   selector: 'app-car-form',
@@ -8,28 +8,49 @@ import { CarsService } from '../shared/services/cars.service';
 })
 export class CarFormComponent implements OnInit {
 
-  Allcars : any[] = []
-  AllCarsSecurityFeatures: any[] = []
-  comfortFeatures: any[] = []
+  cars : any[] = []
+  carsSecFeat: any[] = []
+  carsComFeatures: any[] = []
 
-  constructor(
+  dataSource = this.cars
 
-    private carService: CarsService
-  ) { }
+
+  constructor(private carService: CarsService){}
+
+  getAllCars(){
+    this.carService.getCars().subscribe( res => {
+      this.cars = res
+   
+     })
+  }
+
+  getCarsSecFeat(){
+    this.carService.getCarsSecFeat().subscribe( res => {
+      this.carsSecFeat = res
+     })
+  }
+
+  getCarsComfFeat(){
+    this.carService.getCarsComfFeat().subscribe(res => {
+      this.carsComFeatures = res
+     })
+  }
+
+  addRows() {
+
+    this.carsSecFeat.push({})
+    
+   
+  }
+
 
   ngOnInit(): void {
-  this.carService.getAllCars().subscribe( res => {
-    this.Allcars = res
+
+    this.getAllCars()
+    this.getCarsSecFeat()
  
-   })
+    this.getCarsComfFeat()
 
-   this.carService.getCarSecurityFeatures().subscribe( res => {
-    this.AllCarsSecurityFeatures = res
-   })
-
-   this.carService.getComfortFeatures().subscribe(res => {
-    this.comfortFeatures = res
-   })
   }
 
 }
